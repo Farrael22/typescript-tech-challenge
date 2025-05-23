@@ -1,0 +1,47 @@
+services:
+  database:
+    container_name: fintrack-db-${ENV:-dev}
+    image: postgres:16.4
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    environment:
+      POSTGRES_DB: ${DB_NAME:-fintrack}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    volumes:
+      - .docker/fintrack-db-${ENV:-development}:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_USERNAME:-postgres}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - fintrack-network
+
+  app:
+    container_name: fintrack-api-${ENV:-development}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '${PORT:-3000}:3000'
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_USERNAME: ${DB_USERNAME:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      DB_NAME: ${DB_NAME:-fintrack}
+      PORT: ${PORT:-3000}
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - /app/node_modules
+    networks:
+      - fintrack-network
+    restart: unless-stopped
+
+networks:
+  fintrack-network:
+    driver: bridge
