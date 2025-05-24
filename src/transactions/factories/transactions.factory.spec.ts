@@ -51,4 +51,23 @@ describe('TransactionsFactory', () => {
       )
     })
   })
+
+  describe('#createExpense', () => {
+    it('returns a transaction entity', () => {
+      const transaction = TransactionsFactory.createExpense({
+        requester,
+        amount: 100,
+        description: 'description',
+      })
+
+      expect(transaction).toStrictEqual(
+        new TransactionEntity({
+          userId: 'user-id',
+          magnifiedAmount: 1000000,
+          description: 'description',
+          type: TransactionType.Expense,
+        }),
+      )
+    })
+  })
 })

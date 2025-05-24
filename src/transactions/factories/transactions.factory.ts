@@ -35,4 +35,21 @@ export class TransactionsFactory {
       type: TransactionType.Refund,
     })
   }
+
+  static createExpense({
+    amount,
+    description,
+    requester,
+  }: {
+    amount: number
+    description: Optional<string>
+    requester: UserEntity
+  }) {
+    return new TransactionEntity({
+      userId: requester.id,
+      magnifiedAmount: Money.toMagnified(amount),
+      description,
+      type: TransactionType.Expense,
+    })
+  }
 }

@@ -29,7 +29,7 @@ Your Product Manager has asked you to build **FinTrack**, a lightweight financia
 - **Create new transactions:**
   Users can create new transactions from this view as well.
 
-## Phase 1: Coding (Estimated 3 hours)
+## Phase 1: Coding
 
 - Build out a RESTful API and corresponding backend system to handle the features detailed above. This RESTful API would communicate with a single-page JS app. The API you build should enable all the features on both pages. Feel free to choose your preferred framework, but TypeScript usage is a must.
 - You should implement a real, production-ready database, and queries should be performant.
@@ -43,7 +43,7 @@ Your Product Manager has asked you to build **FinTrack**, a lightweight financia
 ⚠️ Submissions that don't include a functional Docker Compose file will be automatically rejected. Make sure to validate your solution before submitting it by testing a fresh setup scenario. All evaluations are performed in Linux-based environments (Ubuntu or macOS).
 <br />
 
-## Phase 2: Self-Critique & Scaling (Estimated 30 minutes)
+## Phase 2: Self-Critique & Scaling
 
 - **Reflect on your implementation:**
   In a **Critique** section of your README, describe what you would improve given more time and explain why those changes matter.
