@@ -22,7 +22,10 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter())
 
-  await app.listen(config.get<number>('PORT') ?? 3000)
+  const port = config.get<number>('PORT') ?? 3000
+  await app.listen(port)
+
+  console.log(`Server is running on port ${port}!`)
 }
 
 bootstrap()

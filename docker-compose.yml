@@ -18,13 +18,30 @@ services:
     networks:
       - fintrack-network
 
+  redis:
+    container_name: fintrack-redis-${ENV:-development}
+    image: redis:7.2-alpine
+    ports:
+      - '${REDIS_PORT:-6379}:6379'
+    command: redis-server --appendonly yes
+    volumes:
+      - .docker/fintrack-redis-${ENV:-development}:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - fintrack-network
+    restart: unless-stopped
+
   app:
     container_name: fintrack-api-${ENV:-development}
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '${PORT:-3000}:3000'
+      - '${PORT:-3000}:${PORT:-3000}'
     environment:
       NODE_ENV: ${NODE_ENV:-development}
       DB_HOST: database
@@ -32,12 +49,15 @@ services:
       DB_USERNAME: ${DB_USERNAME:-postgres}
       DB_PASSWORD: ${DB_PASSWORD:-postgres}
       DB_NAME: ${DB_NAME:-fintrack}
+      REDIS_HOST: redis
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      REDISCLOUD_URL: ${REDISCLOUD_URL:-redis://redis:6379}
       PORT: ${PORT:-3000}
     depends_on:
       database:
         condition: service_healthy
-    volumes:
-      - /app/node_modules
+      redis:
+        condition: service_healthy
     networks:
       - fintrack-network
     restart: unless-stopped
