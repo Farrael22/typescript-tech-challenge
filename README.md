@@ -23,6 +23,10 @@ yarn
 yarn docker:up
 ```
 
+## API documentation
+
+A postman collection is available in this project to enable easy endpoint usage, located at `src/docs/postman-collection.json`
+
 ## Migrations
 
 After performing schema changes (entities), use the following command to generate a new migration:
