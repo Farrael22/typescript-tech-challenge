@@ -21,7 +21,12 @@
     "prepare": "husky install && chmod u+x .husky/*",
     "docker:up": "docker-compose build && docker-compose up -d",
     "docker:down": "docker-compose down",
-    "docker:logs": "docker-compose logs -f"
+    "docker:logs": "docker-compose logs -f",
+    "typeorm": "yarn build && typeorm-ts-node-commonjs",
+    "migration:generate": "yarn typeorm migration:generate -d src/.config/migrations.config.ts",
+    "migration:create": "yarn typeorm migration:create -d src/.config/migrations.config.ts",
+    "migration:run": "yarn typeorm migration:run -d src/.config/migrations.config.ts",
+    "migration:revert": "yarn typeorm migration:revert -d src/.config/migrations.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -50,6 +55,7 @@
     "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
+    "cross-var": "^1.1.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",

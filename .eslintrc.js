@@ -25,5 +25,20 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     'prettier/prettier': 'error',
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          {
+            group: ['*/index', '*/index.ts', '*/index.js'],
+            message: 'Barrel file imports are not allowed. Import directly from the specific file.',
+          },
+          {
+            group: ['./entities', '../entities', '../../entities'],
+            message: 'Barrel file imports are not allowed. Import directly from the entity file.',
+          },
+        ],
+      },
+    ],
   },
-};
+}
