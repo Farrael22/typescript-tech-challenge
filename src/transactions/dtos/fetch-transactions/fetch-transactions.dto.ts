@@ -1,5 +1,5 @@
-import { Type } from 'class-transformer'
-import { IsEnum, IsOptional, Min } from 'class-validator'
+import { Transform, Type } from 'class-transformer'
+import { IsDate, IsEnum, IsOptional, Min } from 'class-validator'
 import { format } from 'date-fns'
 import { TransactionType } from 'src/entities/enums/transaction-type.enum'
 import { TransactionEntity } from 'src/entities/transaction.entity'
@@ -18,6 +18,16 @@ export class FetchTransactionsQuery {
   @IsOptional()
   @IsEnum(TransactionType)
   type: Optional<TransactionType>
+
+  @IsOptional()
+  @IsDate()
+  @Transform(({ value }) => new Date(value))
+  start: Optional<Date>
+
+  @IsOptional()
+  @IsDate()
+  @Transform(({ value }) => new Date(value))
+  end: Optional<Date>
 }
 
 export class FetchTransactionsResponse {

@@ -12,6 +12,8 @@ export class FetchTransactionsUseCase {
       take: query.take,
       skip: query.skip,
       type: query.type,
+      start: query.start,
+      end: query.end,
     })
   }
 }

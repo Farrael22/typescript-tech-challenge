@@ -8,6 +8,8 @@ export type TransactionsSearchParams = {
   take: number
   skip: number
   type: Optional<TransactionType>
+  start: Optional<Date>
+  end: Optional<Date>
 }
 
 export interface Transactions {

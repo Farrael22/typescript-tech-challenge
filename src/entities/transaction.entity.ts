@@ -16,7 +16,7 @@ import { Money } from 'src/utils/money'
 
 @Entity('transactions', { schema: 'financial' })
 @Unique(['originalTransactionId'])
-@Index(['type'])
+@Index(['type', 'createdAt'])
 export class TransactionEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
@@ -27,6 +27,7 @@ export class TransactionEntity {
   })
   magnifiedAmount: number
 
+  @Index()
   @Column({
     type: 'enum',
     enum: TransactionType,
@@ -37,6 +38,7 @@ export class TransactionEntity {
   @Column({ length: 255, default: '' })
   description: string
 
+  @Index()
   @CreateDateColumn()
   createdAt: Date
 

@@ -19,6 +19,8 @@ describe('CreateIncomeTransactionUseCase', () => {
       take: 10,
       skip: 0,
       type: TransactionType.Income,
+      start: new Date('2025-01-01'),
+      end: new Date('2025-01-02'),
     })
     let actual: { transactions: Array<TransactionEntity>; total: number }
 
@@ -51,6 +53,8 @@ describe('CreateIncomeTransactionUseCase', () => {
         take: 10,
         skip: 0,
         type: TransactionType.Income,
+        start: new Date('2025-01-01'),
+        end: new Date('2025-01-02'),
       })
     })
 
