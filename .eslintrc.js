@@ -23,7 +23,7 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': ['error', { allowTernary: true }],
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
     'prettier/prettier': 'error',
     'no-restricted-imports': [
       'error',

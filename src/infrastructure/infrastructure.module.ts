@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
 
 import dbConfig from 'src/.config/db.config'
+import { repositoriesProviders } from './infrastructure.providers'
 
 @Global()
 @Module({
@@ -18,5 +19,7 @@ import dbConfig from 'src/.config/db.config'
         configService.get('DATABASE_CONFIG') as TypeOrmModuleOptions,
     }),
   ],
+  providers: repositoriesProviders,
+  exports: repositoriesProviders,
 })
 export class InfrastructureModule {}

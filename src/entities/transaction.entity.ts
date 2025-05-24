@@ -20,7 +20,7 @@ export class TransactionEntity {
     type: 'integer',
     comment: `Amount stored as integer (multiplied by ${Money.multiplier} for precision)`,
   })
-  amount: number
+  magnifiedAmount: number
 
   @Column({
     type: 'enum',
@@ -41,4 +41,8 @@ export class TransactionEntity {
   @ManyToOne(() => UserEntity, (user) => user.transactions)
   @JoinColumn({ name: 'userId' })
   user: Relation<UserEntity>
+
+  constructor(props: Partial<TransactionEntity> = {}) {
+    Object.assign(this, props)
+  }
 }
