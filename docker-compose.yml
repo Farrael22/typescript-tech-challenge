@@ -51,7 +51,7 @@ services:
       DB_NAME: ${DB_NAME:-fintrack}
       REDIS_HOST: redis
       REDIS_PORT: ${REDIS_PORT:-6379}
-      REDISCLOUD_URL: ${REDISCLOUD_URL:-redis://redis:6379}
+      REDISCLOUD_URL: redis://redis:6379
       PORT: ${PORT:-3000}
     depends_on:
       database:
