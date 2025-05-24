@@ -1,3 +1,4 @@
+import { TransactionType } from 'src/entities/enums/transaction-type.enum'
 import { TransactionEntity } from 'src/entities/transaction.entity'
 
 export const Transactions = Symbol('Transactions')
@@ -6,6 +7,7 @@ export type TransactionsSearchParams = {
   userId: string
   take: number
   skip: number
+  type: Optional<TransactionType>
 }
 
 export interface Transactions {

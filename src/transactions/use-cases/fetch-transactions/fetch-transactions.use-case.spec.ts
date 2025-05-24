@@ -18,6 +18,7 @@ describe('CreateIncomeTransactionUseCase', () => {
     const query = Mock<FetchTransactionsQuery>({
       take: 10,
       skip: 0,
+      type: TransactionType.Income,
     })
     let actual: { transactions: Array<TransactionEntity>; total: number }
 
@@ -49,6 +50,7 @@ describe('CreateIncomeTransactionUseCase', () => {
         userId: 'user-id',
         take: 10,
         skip: 0,
+        type: TransactionType.Income,
       })
     })
 

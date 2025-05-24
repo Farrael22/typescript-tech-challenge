@@ -8,6 +8,7 @@ import {
   Relation,
   JoinColumn,
   Unique,
+  Index,
 } from 'typeorm'
 import { UserEntity } from './user.entity'
 import { TransactionType } from './enums/transaction-type.enum'
@@ -15,6 +16,7 @@ import { Money } from 'src/utils/money'
 
 @Entity('transactions', { schema: 'financial' })
 @Unique(['originalTransactionId'])
+@Index(['type'])
 export class TransactionEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string

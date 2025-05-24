@@ -11,6 +11,7 @@ export class FetchTransactionsUseCase {
       userId: requester.id,
       take: query.take,
       skip: query.skip,
+      type: query.type,
     })
   }
 }

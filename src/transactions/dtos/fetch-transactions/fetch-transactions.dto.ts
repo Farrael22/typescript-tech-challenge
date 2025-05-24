@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer'
-import { IsOptional, Min } from 'class-validator'
+import { IsEnum, IsOptional, Min } from 'class-validator'
 import { format } from 'date-fns'
+import { TransactionType } from 'src/entities/enums/transaction-type.enum'
 import { TransactionEntity } from 'src/entities/transaction.entity'
 import { Money } from 'src/utils/money'
 
@@ -13,6 +14,10 @@ export class FetchTransactionsQuery {
   @Type(() => Number)
   @Min(0)
   skip: number
+
+  @IsOptional()
+  @IsEnum(TransactionType)
+  type: Optional<TransactionType>
 }
 
 export class FetchTransactionsResponse {

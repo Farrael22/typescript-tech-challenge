@@ -16,9 +16,9 @@ export class TransactionsRepository extends Repository<TransactionEntity> implem
     return this.findOneOrFail({ where: { id: String(id) }, relations: { refundTransaction: true } })
   }
 
-  async search({ userId, take, skip }: TransactionsSearchParams) {
+  async search({ userId, take, skip, type }: TransactionsSearchParams) {
     const [transactions, total] = await this.findAndCount({
-      where: { userId: String(userId) },
+      where: { userId: String(userId), type },
       skip,
       take,
       order: { createdAt: 'DESC' },
