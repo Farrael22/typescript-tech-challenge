@@ -17,7 +17,7 @@ Your Product Manager has asked you to build **FinTrack**, a lightweight financia
 - **Infinite scroll pagination:**
   Automatically fetches and appends older transactions in batches of ten as you scroll to the bottom of the list, ensuring a smooth, continuous browsing experience without manual page changes.
 - **Create new transactions:**
-  Presents a form with fields for amount, description (up to 255 characters), and transaction type. Upon submission, the entry is persisted and immediately reflected in the feed.
+  Presents a form with fields for amount, description (up to 255 characters), and transaction type. Upon submission, the entry is persisted and immediately reflected in the feed. A refund must reference the original transaction.
 
 ### Account Page
 

@@ -8,4 +8,8 @@ export class TransactionsRepository extends Repository<TransactionEntity> implem
   constructor(entityManager: EntityManager) {
     super(TransactionEntity, entityManager)
   }
+
+  findByIdOrFail(id: string): Promise<TransactionEntity> {
+    return this.findOneOrFail({ where: { id: String(id) }, relations: { refundTransaction: true } })
+  }
 }

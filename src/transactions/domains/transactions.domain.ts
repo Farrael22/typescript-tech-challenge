@@ -4,4 +4,5 @@ export const Transactions = Symbol('Transactions')
 
 export interface Transactions {
   save(transaction: TransactionEntity): Promise<TransactionEntity>
+  findByIdOrFail(id: string): Promise<TransactionEntity>
 }
