@@ -1,4 +1,4 @@
-import { createParamDecorator, ExecutionContext, UnauthorizedException } from '@nestjs/common'
+import { createParamDecorator, ExecutionContext } from '@nestjs/common'
 import { UserEntity } from 'src/entities/user.entity'
 
 export const LoggedUser = createParamDecorator(
@@ -7,10 +7,6 @@ export const LoggedUser = createParamDecorator(
       loggedUser: () => Promise<Nullable<UserEntity>>
     }
 
-    const loggedUser = await request.loggedUser
-
-    if (!loggedUser) throw new UnauthorizedException('Unauthenticated.')
-
-    return loggedUser
+    return await request.loggedUser
   },
 )
