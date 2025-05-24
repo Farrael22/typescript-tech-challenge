@@ -11,13 +11,19 @@ In order to run this project locally, the following tools are required:
 
 With everything ready,
 
-1. install the project dependencies
+1. copy the environment configuration file
+
+```bash
+cp .env.example .env
+```
+
+2. install the project dependencies
 
 ```bash
 yarn
 ```
 
-2. spin up the docker containers
+3. spin up the docker containers
 
 ```bash
 yarn docker:up
@@ -25,7 +31,7 @@ yarn docker:up
 
 ## API documentation
 
-A postman collection is available in this project to enable easy endpoint usage, located at `src/docs/postman-collection.json`
+A postman collection is available in this project to enable easy endpoint usage, located at `src/docs/FinTrack.postman_collection.json`
 
 ## Migrations
 

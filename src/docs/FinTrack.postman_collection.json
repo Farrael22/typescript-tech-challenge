@@ -1,0 +1,227 @@
+{
+  "info": {
+    "_postman_id": "74356bbe-2c88-4a43-b864-6526f16d898a",
+    "name": "FinTrack",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "19683066"
+  },
+  "item": [
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Create income",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "userId",
+                "value": "ff31bab9-25ed-4079-bc1c-b5ffd7ef4d6e",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": 10,\n    \"description\": \"Monthly salary payment\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3030/api/transactions/incomes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3030",
+              "path": ["api", "transactions", "incomes"]
+            },
+            "description": "Generated from cURL: curl -X POST http://localhost:3000/transactions/income \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Accept: application/json\" \\\n  -d '{\n    \"userId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"amount\": 1250.75,\n    \"description\": \"Monthly salary payment\"\n  }'"
+          },
+          "response": []
+        },
+        {
+          "name": "Create expense",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "userId",
+                "value": "ff31bab9-25ed-4079-bc1c-b5ffd7ef4d6e",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": 1250.75,\n    \"description\": \"Monthly salary payment\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3030/api/transactions/expenses",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3030",
+              "path": ["api", "transactions", "expenses"]
+            },
+            "description": "Generated from cURL: curl -X POST http://localhost:3000/transactions/income \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Accept: application/json\" \\\n  -d '{\n    \"userId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"amount\": 1250.75,\n    \"description\": \"Monthly salary payment\"\n  }'"
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch transactions",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "userId",
+                "value": "ff31bab9-25ed-4079-bc1c-b5ffd7ef4d6e",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": 1250.75,\n    \"description\": \"Monthly salary payment\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3030/api/transactions?skip=0",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3030",
+              "path": ["api", "transactions"],
+              "query": [
+                {
+                  "key": "take",
+                  "value": "12",
+                  "disabled": true
+                },
+                {
+                  "key": "skip",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Generated from cURL: curl -X POST http://localhost:3000/transactions/income \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Accept: application/json\" \\\n  -d '{\n    \"userId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"amount\": 1250.75,\n    \"description\": \"Monthly salary payment\"\n  }'"
+          },
+          "response": []
+        },
+        {
+          "name": "Create refund",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "userId",
+                "value": "ff31bab9-25ed-4079-bc1c-b5ffd7ef4d6e",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": \"ff31bab9-25ed-4079-bc1c-b5ffd7ef4d6e\",\n    \"amount\": 1250.75,\n    \"description\": \"Monthly salary payment\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3030/api/transactions/f7b9f68b-f4bf-47b9-b43e-4ed16e9a6232/refunds",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3030",
+              "path": ["api", "transactions", "f7b9f68b-f4bf-47b9-b43e-4ed16e9a6232", "refunds"]
+            },
+            "description": "Generated from cURL: curl -X POST http://localhost:3000/transactions/income \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Accept: application/json\" \\\n  -d '{\n    \"userId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"amount\": 1250.75,\n    \"description\": \"Monthly salary payment\"\n  }'"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Fetch me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "userId",
+                "value": "ff31bab9-25ed-4079-bc1c-b5ffd7ef4d6e",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3030/api/users/me",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3030",
+              "path": ["api", "users", "me"],
+              "query": [
+                {
+                  "key": "take",
+                  "value": "12",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Generated from cURL: curl -X POST http://localhost:3000/transactions/income \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Accept: application/json\" \\\n  -d '{\n    \"userId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"amount\": 1250.75,\n    \"description\": \"Monthly salary payment\"\n  }'"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
