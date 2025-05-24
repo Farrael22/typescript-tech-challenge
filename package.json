@@ -24,7 +24,7 @@
     "docker:logs": "docker-compose logs -f",
     "typeorm": "yarn build && typeorm-ts-node-commonjs",
     "migration:generate": "yarn typeorm migration:generate -d src/.config/migrations.config.ts",
-    "migration:create": "yarn typeorm migration:create -d src/.config/migrations.config.ts",
+    "migration:create": "yarn typeorm migration:create",
     "migration:run": "yarn typeorm migration:run -d src/.config/migrations.config.ts",
     "migration:revert": "yarn typeorm migration:revert -d src/.config/migrations.config.ts"
   },
