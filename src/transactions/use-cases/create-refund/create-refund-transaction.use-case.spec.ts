@@ -5,11 +5,16 @@ import { UserEntity } from 'src/entities/user.entity'
 import { TransactionEntity } from 'src/entities/transaction.entity'
 import { UnprocessableEntityException } from '@nestjs/common'
 import { TransactionType } from 'src/entities/enums/transaction-type.enum'
+import { EventEmitter2 } from '@nestjs/event-emitter'
+import { TransactionEventType } from 'src/entities/enums/transactions-event-type.enum'
 
 describe('CreateIncomeTransactionUseCase', () => {
   const transactions = Mock<Transactions>({
     findByIdOrFail: jest.fn(),
     save: jest.fn(),
+  })
+  const emitter = Mock<EventEmitter2>({
+    emit: jest.fn(),
   })
 
   describe('#execute', () => {
@@ -21,11 +26,15 @@ describe('CreateIncomeTransactionUseCase', () => {
     const requester = Mock<UserEntity>({
       id: 'user-id',
     })
+    const savedTransaction = Mock<TransactionEntity>({
+      id: 'transaction-id',
+    })
 
     beforeAll(async () => {
       transactions.findByIdOrFail = jest.fn().mockResolvedValue(originalTransaction)
+      transactions.save = jest.fn().mockResolvedValue(savedTransaction)
 
-      const useCase = new CreateRefundTransactionUseCase(transactions)
+      const useCase = new CreateRefundTransactionUseCase(transactions, emitter)
       await useCase.execute('transaction-id', requester)
     })
 
@@ -43,6 +52,13 @@ describe('CreateIncomeTransactionUseCase', () => {
       })
     })
 
+    it('emits a transaction created event', () => {
+      expect(emitter.emit).toHaveBeenCalledWith(TransactionEventType.Created, {
+        transactionId: 'transaction-id',
+        requesterId: 'user-id',
+      })
+    })
+
     describe('when the refunding fails', () => {
       const transactionWithRefund = Mock<TransactionEntity>({
         id: 'transaction-id',
@@ -57,7 +73,7 @@ describe('CreateIncomeTransactionUseCase', () => {
         jest.clearAllMocks()
         transactions.findByIdOrFail = jest.fn().mockResolvedValue(transactionWithRefund)
 
-        useCase = new CreateRefundTransactionUseCase(transactions)
+        useCase = new CreateRefundTransactionUseCase(transactions, emitter)
       })
 
       it('throws an unprocessable entity exception', async () => {

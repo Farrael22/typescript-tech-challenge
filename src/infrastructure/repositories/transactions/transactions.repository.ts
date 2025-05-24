@@ -6,15 +6,19 @@ import {
   Repository,
 } from 'typeorm'
 import { TransactionEntity } from 'src/entities/transaction.entity'
+import { Injectable } from '@nestjs/common'
+import { endOfDay, startOfDay } from 'date-fns'
 import {
   Transactions,
   TransactionsSearchParams,
 } from 'src/transactions/domains/transactions.domain'
-import { Injectable } from '@nestjs/common'
-import { endOfDay, startOfDay } from 'date-fns'
+import { Transactions as TransactionsInUsers } from 'src/users/domains/transactions.domain'
 
 @Injectable()
-export class TransactionsRepository extends Repository<TransactionEntity> implements Transactions {
+export class TransactionsRepository
+  extends Repository<TransactionEntity>
+  implements Transactions, TransactionsInUsers
+{
   constructor(entityManager: EntityManager) {
     super(TransactionEntity, entityManager)
   }
